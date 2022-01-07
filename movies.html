@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet">
+    <style>
+        body{
+            background-color:black;
+        }
+        .head{
+            display: flex;
+            margin: 0 auto;
+            width: 75%;
+            height: 250px;
+            border-radius: 5px;
+        }
+        .head>div{
+            background-attachment: fixed;
+            height: 100%;
+            width: 50%;
+        }
+        .container {
+            color: white;
+            margin: 20px auto;
+            padding: 20px 0px;
+            background-color: rgb(54, 54, 54);
+            width:70%;
+            text-align: center;
+            border-radius:5px;
+        }
+        .movietitle {
+            border: 1px solid red;
+            border-radius:15px;
+            background-color: rgb(77, 74, 74);
+            display: inline-block;
+            cursor: pointer;
+            padding: 0.8em;
+            margin: 10px 5px;
+            width: 40%;
+        }
+        .description{
+            display: inline-block;
+            margin-top: 10px;
+            display:none;
+            width:100%;
+            text-align: justify;
+        }
+        .list{
+            background-color: rgb(54, 54, 54);
+            border-radius:5px;
+            position: absolute;
+            top: 300px;
+            height: 100%;
+            width: 200px;
+        }
+        .list2{
+            background-color: rgb(54, 54, 54);
+            border-radius:5px;
+            position: absolute;
+            top: 300px;
+            right: 0;
+            height: 100%;
+            width: 200px;
+        }
+        .ad{
+            background-color: rgb(54, 54, 54);
+            width: 1100px;
+            height:100px;
+            margin: 0 auto;
+            border-radius:5px;
+            margin-top: 20px;
+        }
+        footer{
+            display: flex;
+            background-color: rgb(100, 99, 99);
+            border-radius: 5px 5px 0px 0px;
+            margin-top: 100px;
+            width: 100%;
+            height: 200px;
+        }
+        footer>div{
+            text-align: center;
+            color: white;
+            margin: 20px 30px;
+            width: 40%;
+        }
+        a{
+            color: white;
+        }
+        @media screen and (max-width: 1400px) {
+            .list2{
+                display: none;
+            }
+            .list{
+                display: none;
+            }
+            .ad{
+                width: 750px;
+            }
+        }
+        @media  screen and (max-width:1000px) {
+            .list2{
+                display: none;
+            }
+            .list{
+                display: none;
+            }
+            .movietitle,.description{
+                display: block;
+                width: 80%;
+                margin: 15px auto;
+            }
+            .ad{
+                width: 650px;
+            }
+        }
+        @media screen and (max-width: 500px) {
+            .list2{
+                display: none;
+            }
+            .list{
+                display: none;
+            }
+            .container,.head,.ad{
+                width: 100%;
+            }
+            .movietitle,.description{
+                display: block;
+                width: 80%;
+                margin: 15px auto;
+            }
+            footer{
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="head">
+        <div class="bg">
+        </div>
+        <div class="bg">
+        </div>
+    </div>
+    <script>
+    var headbg = {
+        //objeto para setar as configurações
+        id:[0,1,2,3,4,5],
+        backgroundImage: [`url('https://images-na.ssl-images-amazon.com/images/S/pv-target-images/1999cd148a8dd4ec13b47acb91b733454b7c377430b43920ac4bed9ffaf3f8b5._RI_V_TTW_.jpg')`,`url('https://cdn.folhape.com.br/upload/dn_arquivo/2021/11/arcane.jpg')`,`url('https://blog.videoperola.com.br/wp-content/uploads/2020/04/0_H-_8tGCuUOIWrMST.jpg')`,`url('https://static0.gamerantimages.com/wordpress/wp-content/uploads/2021/03/skyrim-mage.jpg')`,`url('https://observatoriodocinema.uol.com.br/wp-content/uploads/2019/09/teste-voce-sabe-quem-disse-essa-frase-em-the-vampire-diaries.jpg')`,`url('https://sm.ign.com/t/ign_br/news/t/this-is-ho/this-is-how-big-the-script-was-for-the-witcher-3-w_7ahc.h720.jpg')`],
+        backgroundSize: ['contain','690px','590px','790px','690px','690px'],
+        backgroundPosition: ['5%','5px -60px','160px 10px','0px -10px','-15px -30px','80px -10px']
+    }
+    var bg = document.querySelectorAll('.bg')
+    var i = 0
+    const slider = ()=> {
+        //setando com orientação a objetos
+        if (i >= headbg.id.length) {
+            i = 0
+        }
+        if (i < headbg.id.length) {
+            bg[0].style.backgroundImage = headbg.backgroundImage[i]
+            bg[0].style.backgroundSize = headbg.backgroundSize[i]
+            bg[0].style.backgroundPosition = headbg.backgroundPosition[i]
+            //
+            bg[1].style.backgroundImage = headbg.backgroundImage[i + 1]
+            bg[1].style.backgroundSize = headbg.backgroundSize[i + 1]
+            bg[1].style.backgroundPosition = headbg.backgroundPosition[i + 1]
+            i++
+        }
+    }
+    setInterval(slider,2000)
+    </script>
+    <div class="container">
+        <h1>Filmes/Series mais assistidas</h1>
+    </div>
+    <iframe src="movieframe.html" class="list" frameborder="0"></iframe>
+    <iframe src="movieframe.html" class="list2" frameborder="0"></iframe>
+    <script>
+        //usando api themoviedb
+        fetch('https://api.themoviedb.org/3/movie/popular?api_key=506fadb0256c13349acc05dabebf9604&language=pt-br-US&page=1',{
+            //alternar na url de en para pt-br
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(function (json) {
+            var container = document.querySelector('.container')
+
+            json.results.map(function (val) { //mais opções (title,overview,etc) na documentação da api themoviedb
+            container.innerHTML += 
+            `<div class="movietitle">`+val.original_title+`
+                <p class="description">`+val.overview+`</p>
+            </div>`
+            })
+            var movietitle = document.querySelectorAll('.movietitle')
+            var description = document.querySelectorAll('.description')
+
+            for (let i = 0; i < movietitle.length; i++) {
+                movietitle[i].addEventListener('click',()=>{
+                    if (description[i].style.display == 'none') {
+                        description[i].style.display = 'block'
+                    }else{
+                        description[i].style.display = 'none'
+                    }
+                })
+            }    
+        })
+    </script>
+    <div class="ad"><iframe src="movieframe.html" frameborder="0" class="ad" id="ad"></iframe></div>
+    <hr style="margin-top:-40px;">
+    <footer>
+        <div>
+            <h3>Autor: João Bonifácio</h3>
+            <p>Projeto open sourse.</p>
+            <p>Objetivo: treinar habilidades.</p>
+        </div>
+        <div>
+            <h3>Contatos:</h3>
+            <p>telefone: (74)981396621</p>
+            <p>email: joaojunior.b22@gmail.com</p>
+        </div>
+        <div>
+            <h3>Redes sociais:</h3>
+            <p><a href="https://www.instagram.com/jao_bdk/" target="_blank"><i class="fab fa-instagram"></a></i></p>
+            <p><a href="https://www.linkedin.com/in/joao-junior-7499b6218/" target="_blank"><i class="fab fa-linkedin"></i></a></p>
+            <p><a href="https://github.com/Joao-Bonifacio" target="_blank"><i class="fab fa-github"></i></a></p>
+        </div>
+    </footer>
+    <div style="clear:both;width: 100%; height:25px;background-color:rgb(34, 32, 32);"></div>
+</body>
+</html>
